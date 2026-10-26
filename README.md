@@ -1,25 +1,24 @@
 # Tiny Finance Engine
 
-## 1. Project Description
+A small JavaScript project for tracking expenses. Amounts use satang: **100 satang = 1 baht**.
 
-Tiny Finance Engine is a small JavaScript program that tracks expenses and calculates how much money is left. All amounts use satang: 100 satang equals 1 baht.
+## Try the Web Page
 
-## 2. Features
+1. Open `index.html` in your browser.
+2. Enter an expense amount in satang.
+3. Click **Add Expense** to add it to the list.
 
-- `addNewExpense`: Add a new expense without changing the original array.
-- `deleteExpense`: Remove an expense by its ID without changing the original array. If the ID is not found, all expenses stay in the list.
-- `totalExpense`: Add up all expense amounts. An empty list gives a total of 0.
-- `calculateRemainingBalance`: Subtract total expenses from the balance. A negative result means you spent more than your balance.
+The page currently only lists expenses. Refreshing the page clears the list.
 
-## 3. How to Run
+## Run the Finance Examples
 
-Install Node.js, then open a terminal in the `tiny_finance_engine` folder and run:
+Install Node.js, open a terminal in the `tiny_finance_engine` folder, and run:
 
 ```sh
 node finance_Engine.js
 ```
 
-The current examples print:
+The examples add and delete expenses, calculate the total, and check the remaining balance. They print:
 
 ```text
 6000
@@ -28,18 +27,12 @@ Invalid amount
 Duplicate expense ID
 ```
 
-This means the total expenses are 6000 satang and the remaining balance is 4000 satang. The last two messages come from tests that use invalid expenses on purpose.
+The last two messages are expected checks for invalid data.
 
-## 4. Validation
+## Project Files
 
-When adding a new expense, `addNewExpense` rejects:
-
-- Negative amounts, such as `-500`.
-- Decimal amounts, such as `10.5`, because satang must be a whole number.
-- Values that are not numbers, such as `"500"`, `null`, or a missing amount.
-- `NaN`, `Infinity`, and numbers outside JavaScript's safe integer range.
-- An expense ID that is already in the list.
-
-Zero is allowed. The other three functions do not check for invalid inputs yet.
+- `index.html`: The expense form and list.
+- `app.js`: Adds amounts from the form to the page.
+- `finance_Engine.js`: Separate finance functions and example checks. It rejects invalid amounts and duplicate IDs when adding expenses.
 
 

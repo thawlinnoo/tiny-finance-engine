@@ -16,7 +16,7 @@ function addNewExpense(prev_expenses, new_expense){
     return [...prev_expenses, new_expense]
 }
 
-function deleteExpense(prev_expenses, idToDelete){
+function deleteExpense(prev_expenses, idToDelete){  
     return prev_expenses.filter(expense=>expense.id!==idToDelete)
 }
 
