@@ -1,16 +1,44 @@
 const form = document.querySelector("#expenseForm")
 const button = document.querySelector("#loadExpensesBtn")
 const amountInput = document.querySelector("#amount")
+const expenseList = document.querySelector("#expenseList")
+const savedExpenses = localStorage.getItem("expenses")
+let expenses = []
+
+try {
+    expenses = savedExpenses
+    ? JSON.parse(savedExpenses)
+    : [];
+    if (!Array.isArray(expenses)) {
+        expenses = []
+    }
+} catch(error) {
+    expenses=[]
+    console.log(error.message)
+}
+
+
+expenses.forEach((expense)=>{
+    const item = document.createElement("li")
+    item.textContent = expense.amountSatang + " satang"
+    expenseList.appendChild(item)
+})
 
 function handleAddExpense(e){
     e.preventDefault()
     const amount = Number(amountInput.value)
+    const expense = {
+        id: Date.now(),
+        amountSatang: amount
+    }
+    expenses.push(expense)
+    localStorage.setItem("expenses", JSON.stringify(expenses))
+
     console.log(amount)
     console.log(typeof amount)
 
     const item = document.createElement("li")
     item.textContent = amount + " satang"
-    const expenseList = document.querySelector("#expenseList")
     expenseList.appendChild(item)
 
 }
@@ -56,7 +84,7 @@ async function showExpense(e){
         } else {
             expenses.forEach((expense)=>{
             const item = document.createElement("li")
-            item.textContent = expense.amountSatang + " satang"
+            item.textContent = expense.amountSatang + " satang" 
             expenseList.appendChild(item)
             })
             status.textContent = "Expenses loaded."
